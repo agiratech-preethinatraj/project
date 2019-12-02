@@ -7,23 +7,26 @@ var con = mysql.createConnection({
 con.connect();
 
 //function for put method
-function put (req, callback){
+function put (req, callback,mes){
   var sql = "UPDATE week SET agenda =('"+req.body.agenda+ "') WHERE user_id=('"+req.body.user_id+"') ";
    con.query(sql, function (err, result) {
      var response = {}
      if(err){
+       console.log(err)
       response.msg = "error"
       callback(400, response)
       }else{
        console.log(result);
+       response.mes=("successfully updated")
        response.msg = ("no of item updated:"+result.affectedRows)
        callback(200, response)
+       callback(200,response)
       }
   });
   }
 
 //function for post method
-  function post  (req, callback) {
+  function post  (req, callback,mes) {
     con.query('INSERT INTO week (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))', function (err, result) {
   var res={}
       if(err){
@@ -31,14 +34,16 @@ function put (req, callback){
           callback(400,res)
           }else{
           console.log("one item added");
+          res.mes=("successfully added")
           res.msg = ("no of item added:"+result.affectedRows)
+          callback(200,res)
           callback(200,res)
         }
       });
   };
 
 //function for delete method
-function del(req,callback){
+function del(req,callback,mes){
   var sql =  "DELETE from week WHERE agenda = ('"+req.body.agenda+"')";
   con.query(sql, function (err, res) {
     var res={}
@@ -47,14 +52,16 @@ function del(req,callback){
         callback(400,res)
         }else{
         console.log("one item deleted");
+        res.mes=("successfully deleted")
         res.msg = ("no of item deleted:"+result.affectedRows)
+        callback(200,res)
         callback(200,res)
       }
   });
 };
 
 //function for get method
-function get(req,callback){
+function get(req,callback,mes){
     con.query("SELECT * from week", function(err,result){
   var response={}
   if(err){
@@ -112,6 +119,7 @@ function get(req,callback){
     json.week.future = future;
     console.log(json);
     response.msg=(json)
+    response.mes=("successfully read")
     callback(200,response)
 };
 });
