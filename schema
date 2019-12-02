@@ -1,0 +1,32 @@
+MySQL  Node js database and table creation 
+1. Create  a database  named mydb –“con.query("CREATE DATABASE mydb")”
+2. Create a table named week -    con.query("CREATE TABLE events (user_id VARCHAR(255), date DATE, agenda VARCHAR(255),Start_time TIME,end_time TIME, mode VARCHAR(255),status VARCHAR(255))";
+3. Insert the values inside the table -var sql = "INSERT INTO events (user_id,agenda,date,start_time,end_time,status,mode) VALUES ?"
+  var values = [
+  [“u1”,”meditation”,2019-12-1,6:30:00,7:30:00,”silent”,”true”]]  con.query(sql, [values], )
+
+
+//DB Connection
+
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "mydb"
+
+
+//Put
+sql = "UPDATE events SET agenda =('"+req.body.agenda+ "') WHERE user_id=('"+req.body.user_id+"') ";
+
+//Post
+con.query('INSERT INTO events (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))'
+
+//Delete
+
+"DELETE from events WHERE agenda = ('"+req.body.agenda+"')"
+
+//get
+con.query("SELECT * from events",
+
+
+
+
