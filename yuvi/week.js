@@ -17,26 +17,22 @@ function put (req, callback,mes){
       callback(400, response)
       }else{
        console.log(result);
-       response.mes=("successfully updated")
        response.msg = ("no of item updated:"+result.affectedRows)
        callback(200, response)
-       callback(200,response)
       }
   });
   }
 
 //function for post method
   function post  (req, callback,mes) {
-    con.query('INSERT INTO week (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))', function (err, result) {
-  var res={}
-      if(err){
+   con.query('INSERT INTO week (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))', function (err, result) {
+     var res={}
+     if(err){
         res.msg = "error"
           callback(400,res)
           }else{
           console.log("one item added");
-          res.mes=("successfully added")
           res.msg = ("no of item added:"+result.affectedRows)
-          callback(200,res)
           callback(200,res)
         }
       });
@@ -52,9 +48,7 @@ function del(req,callback,mes){
         callback(400,res)
         }else{
         console.log("one item deleted");
-        res.mes=("successfully deleted")
         res.msg = ("no of item deleted:"+result.affectedRows)
-        callback(200,res)
         callback(200,res)
       }
   });
@@ -119,7 +113,6 @@ function get(req,callback,mes){
     json.week.future = future;
     console.log(json);
     response.msg=(json)
-    response.mes=("successfully read")
     callback(200,response)
 };
 });

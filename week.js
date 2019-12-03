@@ -7,12 +7,11 @@ var con = mysql.createConnection({
 con.connect();
 
 //function for put method
-function put (req, callback,mes){
+function put (req, callback){
   var sql = "UPDATE week SET agenda =('"+req.body.agenda+ "') WHERE user_id=('"+req.body.user_id+"') ";
    con.query(sql, function (err, result) {
      var response = {}
      if(err){
-       console.log(err)
       response.msg = "error"
       callback(400, response)
       }else{
@@ -24,10 +23,10 @@ function put (req, callback,mes){
   }
 
 //function for post method
-  function post  (req, callback,mes) {
-   con.query('INSERT INTO week (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))', function (err, result) {
-     var res={}
-     if(err){
+  function post  (req, callback) {
+    con.query('INSERT INTO week (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))', function (err, result) {
+  var res={}
+      if(err){
         res.msg = "error"
           callback(400,res)
           }else{
@@ -39,7 +38,7 @@ function put (req, callback,mes){
   };
 
 //function for delete method
-function del(req,callback,mes){
+function del(req,callback){
   var sql =  "DELETE from week WHERE agenda = ('"+req.body.agenda+"')";
   con.query(sql, function (err, res) {
     var res={}
@@ -55,7 +54,7 @@ function del(req,callback,mes){
 };
 
 //function for get method
-function get(req,callback,mes){
+function get(req,callback){
     con.query("SELECT * from week", function(err,result){
   var response={}
   if(err){
