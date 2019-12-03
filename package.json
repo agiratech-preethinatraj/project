@@ -1,0 +1,19 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "got": "^9.6.0",
+    "mongodb": "^3.3.5",
+    "mysql": "github:mysqljs/mysql",
+    "request": "^2.88.0",
+    "sqlstring": "^2.3.1"
+  }
+}
