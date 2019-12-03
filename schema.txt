@@ -12,7 +12,14 @@ CREATE TABLE week (
 INSERT INTO week (user_id,agenda,date,start_time,end_time,status,mode) 
 values ('u1','meditation','2019-12-1','6:30:00','7:30:00','silent','true');
   
-
-
+CREATE TABLE week (
+  user_id VARCHAR(255), 
+  date DATE, 
+  agenda VARCHAR(255), 
+  Start_time TIME, 
+  end_time TIME, 
+  mode VARCHAR(255), 
+  status VARCHAR(255)
+) ;
 INSERT INTO month (user_id,agenda,date,start_time,end_time,status,mode) VALUES ('u2','meditation','2019-12-1','6:30:00','7:30:00','silent','true');
 
