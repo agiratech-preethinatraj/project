@@ -1,7 +1,9 @@
-var week= require('./week.js');
-var month=require('./month.js')
+var fs = require('fs');
+var path = require('path');
+var week= require('./service/week.js');
+var month = require('./service/month.js')
 var express = require('express');
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser')
 var app = express();
 var mysql = require('mysql');
 app.use(bodyParser())
@@ -65,6 +67,6 @@ app.get("/db/y4", function(req, res) {
 });
 
 //assignment of port number
-app.listen(3002,function(){
+app.listen(3005,function(){
  console.log("listening to 3002");
 });

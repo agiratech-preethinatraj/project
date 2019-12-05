@@ -1,13 +1,8 @@
-var mysql = require('mysql');
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "preethi@123",
-  database: "db"});
-con.connect();
+
+var model= require('./models')
 function put (req, callback){
   var sql = "UPDATE month SET agenda =('"+req.body.agenda+ "') WHERE user_id=('"+req.body.user_id+"') ";
-   con.query(sql, function (err, result) {
+   model.con.query(sql, function (err, result) {
      var response = {}
      if(err){
       response.msg = "error"
@@ -21,7 +16,7 @@ function put (req, callback){
   }
 
   function post  (req, callback) {
-    con.query('INSERT INTO month (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))', function (err, result) {
+    model.con.query('INSERT INTO month (user_id, date,agenda,start_time,end_time,mode,status)   values (("'+req.body.user_id+'"),("'+req.body.date+'"),("'+req.body.agenda+'"),("'+req.body.start_time+'"),("'+req.body.end_time+'"),("'+req.body.mode+'"),("'+req.body.status+'"))', function (err, result) {
   var res={}
       if(err){
         res.msg = "error"
@@ -35,7 +30,7 @@ function put (req, callback){
   };
 function del(req,callback){
   var sql =  "DELETE from month WHERE agenda = ('"+req.body.agenda+"')";
-  con.query(sql, function (err, res) {
+  model.con.query(sql, function (err, res) {
     var res={}
     if(err){
       res.msg = "error"
@@ -49,7 +44,7 @@ function del(req,callback){
 };
 
 function get(req,callback){
-    con.query("SELECT * from month", function(err,result){
+    model.con.query("SELECT * from month", function(err,result){
   var response={}
   if(err){
     response.msg = "error"
